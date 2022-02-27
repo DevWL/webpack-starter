@@ -1,25 +1,19 @@
-import _ from 'lodash';
-import sass from './assets/css/styles.sass'; // used in webpack.config.js
-import DomainName from './components/DomainName';
-import Price from './components/Price';
-import DomParagraph from './components/DomParagraph';
-import DomImg from './components/DomImg';
+import _ from 'lodash'; // usefull library
+import sass from './assets/sass/styles.sass'; // used in webpack.config.js
+import DomainName from './jscomponents/DomainName';
+import Price from './jscomponents/Price';
+import DomParagraph from './jscomponents/DomParagraph';
+import DomImg from './jscomponents/DomImg';
 
-// image loading
-import logoUrl from './assets/img/logo.webp';
-
-function importAll(r) {
-  return r.keys().map(r);
+const mySetup = {
+  myImagePath: "img/", // dist image folder
 }
 
-const images = importAll(require.context('./', false, /\.(png|jpe?g|svg)$/));
-
-
 document.getElementById("domain").append(new DomainName());
-document.getElementById("price").append(new Price("Kup za 800", "zł"));
+document.getElementById("price").append(new Price("$200", "---"));
 document.getElementById("kontakt").append(
-  new DomParagraph("KONTAKT"),
-  new DomParagraph("tel. 530 772 177"),
+  new DomParagraph("Hello!"),
+  new DomParagraph(" :) "),
 );
 
-document.getElementById('logo').append(new DomImg(logoUrl, "logo", "logo"));
+document.getElementById('logo').append(new DomImg(mySetup.myImagePath + "logo.webp", "logo", "logo"));

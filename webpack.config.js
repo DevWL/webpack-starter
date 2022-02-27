@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // full tutorial : https://www.youtube.com/watch?v=9c3dBhvtt6o
 module.exports = {
@@ -17,7 +18,7 @@ module.exports = {
     // npm i -D webpack-dev-server
     devServer:{
         static: path.resolve(__dirname, 'dist'),
-        port: 5001,
+        port: 5002,
         open: true,
         hot: true,
     },
@@ -36,10 +37,6 @@ module.exports = {
                   "sass-loader",
                 ],
             },
-            // internal loader
-            {
-                test: /\.(svg|ico|png|gif|jpg|jpeg|webp)$/, type:'asset/resource'
-            }
         ],
     },
     //plugins
@@ -49,7 +46,16 @@ module.exports = {
             title: 'for sale',
             filename: 'index.html',
             template: path.resolve(__dirname, 'src/template.html')
-        })
+        }),
+        // npm i -D copy-webpack-plugin
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src/assets/img'),
+                    to: path.resolve(__dirname, 'dist/img'),
+                },
+            ],
+        }),
     ],
 
 }

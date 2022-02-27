@@ -1,3 +1,6 @@
+@import sasscomponents/vars, sasscomponents/mixins
+
+
 *
     box-sizing: border-box
 
@@ -6,8 +9,10 @@ body
     color: white
     text-align: center
     font-family: 'Noto Sans', sans-serif
+    font-size: 9px
     margin: 0
     padding: 0
+    word-break: break-word
 
 .container
     max-width: 1200px
@@ -49,9 +54,9 @@ body
     padding: 0
 
     #kontakt
-        margin-bottom: -120px
         z-index: 980
         position: relative
+        font-size: 2em
 
     img
         width: 100%
@@ -59,4 +64,19 @@ body
         z-index: -1
 
 .text
-    
+
+@include mq("<=phone")
+@include mq("tablet|=<")
+    body
+        font-size: 13px
+    .price
+        font-size: 3em
+        padding: 0.4em 0
+
+@include mq("tablet-=<")
+@include mq("desktop=<")
+    body
+        font-size: 15px
+@include mq("large=<")
+    body
+        font-size: 18px
